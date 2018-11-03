@@ -1,6 +1,4 @@
 {
-    "auth": {
-        "api_key": "key-123456abcdef",
-        "domain": "sandbox1234abcd5678.mailgun.org"
-    }
+  "MAILGUN_API_KEY": "key-b3c15bf...",
+  "MAILGUN_DOMAIN": "sandboxf9512more.mailgun.org"
 }
