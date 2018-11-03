@@ -67,6 +67,8 @@ Open browser `http://localhost:8081`.
 
 ## Set up free email notifications with Mailgun
 
+Activate your account
+
 1. Sign up for an account at <https://www.mailgun.com>.
 1. Log in.
 1. Go to your dashboard at<https://app.mailgun.com/app/dashboard>.

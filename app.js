@@ -1,4 +1,5 @@
 const path = require("path")
+const fs = require('file-system');
 const express = require("express")
 const logger = require("morgan")
 const bodyParser = require("body-parser") // simplifies access to request body
@@ -7,9 +8,9 @@ const port = process.env.PORT || 8081  // try heroku port first
 
 // MailGun
 const mgconfig = require('./config.json')
-const api_key = process.env.MAILGUN_API_KEY || mgconfig.MAILGUN_API_KEY;
-const DOMAIN = process.env.MAILGUN_DOMAIN || mgconfig.MAILGUN_DOMAIN;
-const mailgun = require('mailgun-js')({apiKey: api_key, domain: DOMAIN});
+const api_key = process.env.MAILGUN_API_KEY || mgconfig.MAILGUN_API_KEY
+const DOMAIN = process.env.MAILGUN_DOMAIN || mgconfig.MAILGUN_DOMAIN
+const mailgun = require('mailgun-js')({ apiKey: api_key, domain: DOMAIN })
 
 // ADD THESE COMMENTS AND IMPLEMENTATION HERE 
 // 1 set up the view engine
@@ -25,14 +26,14 @@ app.set("view engine", "ejs") // specify our view engine
 
 // 2 include public assets and use bodyParser
 app.use(express.static('public'))
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
 
 // 3 log requests to stdout and also
 // log HTTP requests to a file using the standard Apache combined format
-var accessLogStream = fs.createWriteStream(path.join(__dirname, '/access.log'), { flags: 'a' });
-app.use(logger('dev'));
-app.use(logger('combined', { stream: accessLogStream }));
+var accessLogStream = fs.createWriteStream(path.join(__dirname, '/access.log'), { flags: 'a' })
+app.use(logger('dev'))
+app.use(logger('combined', { stream: accessLogStream }))
 
 // 4 http GET default page at /
 app.get("/", function (req, res) {
@@ -61,17 +62,16 @@ app.post("/contact", function (req, res) {
   const email = req.body.inputemail;
   const company = req.body.inputcompany;
   const comment = req.body.inputcomment;
-  const isError = false;
 
   // logs to the terminal window (not the browser)
-  console.log('\nCONTACT FORM DATA: ' + name + ' ' + email + ' ' + company + ' ' + comment + '\n');
+  const str ='\nCONTACT FORM DATA: ' + name + ' ' + email + ' ' + company + ' ' + comment + '\n'
+  console.log(str)
 
   const mailOptions = {
     from: '"Denise Case" <denisecase@gmail.com>', // sender address
     to: 'dcase@nwmissouri.edu, denisecase@gmail.com', // list of receivers
     subject: 'Message from Resume Website Contact page', // Subject line
-    text: comment,
-    err: isError
+    text: str
   }
 
   // send message via MailGun's API
@@ -81,9 +81,11 @@ app.post("/contact", function (req, res) {
       res.json({ msg: 'error sending message' })
     } else {
       console.log('Sending email...')
-    console.log(body);
-    res.render('contact-confirm.ejs')
+      console.log(body);
+      res.render('contact-confirm.ejs')
+    }
   })
+})
 
 // 6 this will execute for all unknown URIs not specifically handled
 app.get(function (req, res) {

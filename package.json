@@ -6,11 +6,11 @@
     "dependencies": {
         "body-parser": "latest",
         "ejs": "latest",
-        "express": "latest",
+        "express": "^4.16.4",
+        "file-system": "latest",
+        "mailgun-js": "latest",
         "morgan": "latest",
-        "nconf": "latest",
-        "nodemailer": "latest",
-        "nodemailer-mailgun-transport": "latest"
+        "nconf": "latest"
     },
     "author": "Denise Case",
     "homepage": "https://www.nwmissouri.edu/csis/directory/case.htm",
@@ -20,6 +20,6 @@
     },
     "license": "Apache-2.0",
     "scripts": {
-      "start": "node app.js"
+        "start": "node app.js"
     }
 }
