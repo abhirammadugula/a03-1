@@ -3,14 +3,12 @@ const express = require("express")
 const logger = require("morgan")
 const bodyParser = require("body-parser") // simplifies access to request body
 const app = express()  // make express app
-const port = 8081
+const port = process.env.PORT || 8081  // try heroku port first
 
 // Needed for automatic mailing
 const fs = require('fs')
 const nodemailer = require('nodemailer');
 const mg = require('nodemailer-mailgun-transport');
-
-
 
 // ADD THESE COMMENTS AND IMPLEMENTATION HERE 
 // 1 set up the view engine
