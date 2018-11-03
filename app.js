@@ -72,8 +72,8 @@ app.post("/contact", function (req, res) {
   else {
     const auth = {
       "auth": {
-        "api_key": api_key,
-        "domain": domain
+        "api_key": process.env.MAILGUN_API_KEY,
+        "domain": process.env.MAILGUN_DOMAIN
       }
     }
   }
