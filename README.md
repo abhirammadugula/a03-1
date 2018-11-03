@@ -50,13 +50,13 @@ I used a template generator to get started with HTML5 boilerplate
 
 - [Initializr](http://www.initializr.com/)
 
-## Get Started
+## Get Started & Run Locally
 
 1. Fork the repo into your own cloud account.
 2. Clone your repo down to your local machine.
 3. Open a command window in your a03 folder or from VS Code menu, chose View / Integrated Terminal
 4. Install the dependencies listed in package.json with npm install.
-5. Run nodemon to start the server.  (Hit CTRL-C to stop.)
+5. Run node or nodemon to start the server.  (Hit CTRL-C to stop.)
 
   ```Powershell
   > npm install
@@ -116,7 +116,7 @@ git push heroku master
 heroku logs
 ```
 
-Open a browser to your Heroku URL to view (e.g. <https://resumesite563.herokuapp.com/>)
+Open a browser to your Heroku URL to view. For example, <https://resumesite563.herokuapp.com/>
 
 ## References
 

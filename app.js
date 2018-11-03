@@ -7,7 +7,7 @@ const app = express()  // make express app
 const port = process.env.PORT || 8081  // try heroku port first
 
 // MailGun
-const mgconfig = require('./config.json')
+const mgconfig = (process.env.NODE_ENV === "production") ? {} : require('./config.json') 
 const api_key = process.env.MAILGUN_API_KEY || mgconfig.MAILGUN_API_KEY
 const DOMAIN = process.env.MAILGUN_DOMAIN || mgconfig.MAILGUN_DOMAIN
 const mailgun = require('mailgun-js')({ apiKey: api_key, domain: DOMAIN })
