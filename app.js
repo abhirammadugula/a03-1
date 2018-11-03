@@ -9,7 +9,8 @@ const port = 8081
 const fs = require('fs')
 const nodemailer = require('nodemailer');
 const mg = require('nodemailer-mailgun-transport');
-const auth = require('./config.json');
+
+
 
 // ADD THESE COMMENTS AND IMPLEMENTATION HERE 
 // 1 set up the view engine
@@ -67,6 +68,17 @@ app.post("/contact", function (req, res) {
   console.log('\nCONTACT FORM DATA: ' + name + ' ' + email + ' ' + company + ' ' + comment + '\n');
 
   // create transporter object capable of sending email using the default SMTP transport
+  if (process.env.NODE_ENV !== 'production') {
+    const auth = require('./config.json');
+  }
+  else {
+    const auth = {
+      "auth": {
+        "api_key": api_key,
+        "domain": domain
+      }
+    }
+  }
   const transporter = nodemailer.createTransport(mg(auth));
 
   const mailOptions = {

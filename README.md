@@ -94,6 +94,7 @@ To improve performance and accessibility on mobile devices, it's progressive.
 2. Create an appname for your site.
 3. Go to Deploy and install Heroku CLI (command line interface).
 4. Go to Settings to see your Heroku URI (hosted website link).
+5. Go to Settings and set your config vars (see config.json.example for required key-value pairs)
 
 ## Making Changes
 
