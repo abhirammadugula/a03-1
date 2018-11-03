@@ -4,6 +4,9 @@ const logger = require("morgan")
 const bodyParser = require("body-parser") // simplifies access to request body
 const app = express()  // make express app
 const port = process.env.PORT || 8081  // try heroku port first
+const auth = (process.env.NODE_ENV === 'production') ? {
+  "auth": { "api_key": process.env.MAILGUN_API_KEY, "domain": process.env.MAILGUN_DOMAIN }
+} : require('./config.json')
 
 // Needed for automatic mailing
 const fs = require('fs')
@@ -66,17 +69,6 @@ app.post("/contact", function (req, res) {
   console.log('\nCONTACT FORM DATA: ' + name + ' ' + email + ' ' + company + ' ' + comment + '\n');
 
   // create transporter object capable of sending email using the default SMTP transport
-  if (process.env.NODE_ENV !== 'production') {
-    const auth = require('./config.json');
-  }
-  else {
-    const auth = {
-      "auth": {
-        "api_key": process.env.MAILGUN_API_KEY,
-        "domain": process.env.MAILGUN_DOMAIN
-      }
-    }
-  }
   const transporter = nodemailer.createTransport(mg(auth));
 
   const mailOptions = {
