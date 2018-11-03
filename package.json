@@ -10,17 +10,16 @@
         "morgan": "latest",
         "nconf": "latest",
         "nodemailer": "latest",
-        "nodemailer-mailgun-transport": "latest",
-        "nodemon": "^1.18.5"
+        "nodemailer-mailgun-transport": "latest"
     },
     "author": "Denise Case",
-    "homepage": "https://bitbucket.org/professorcase/a03",
+    "homepage": "https://www.nwmissouri.edu/csis/directory/case.htm",
     "repository": {
         "type": "git",
-        "url": "https://bitbucket.org/professorcase/a03"
+        "url": "https://github.com/profcase/a03"
     },
     "license": "Apache-2.0",
     "scripts": {
-      "start": "nodemon app.js"
+      "start": "node app.js"
     }
 }

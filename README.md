@@ -113,7 +113,7 @@ git push heroku master
 heroku logs
 ```
 
-Open a browser to your Heroku URL to view.
+Open a browser to your Heroku URL to view (e.g. <https://resumesite563.herokuapp.com/>)
 
 ## References
 
