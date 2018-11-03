@@ -103,10 +103,10 @@ To improve performance and accessibility on mobile devices, it's progressive.
 
 ## Deploy with Heroku CLI
 
-1. Open command window as administrator in your local repo folder on your machine. 
+1. Open command window as administrator in your local repo folder on your machine.
 2. Run heroku login and enter your email address and heroku password.
 3. Run git push heroku master
-4. If errors, use heroku logs to view the log files. 
+4. If errors, use heroku logs to view the log files.
 
 ```Powershell
 heroku login
@@ -118,5 +118,8 @@ Open a browser to your Heroku URL to view (e.g. <https://resumesite563.herokuapp
 
 ## References
 
-Express in Action: Writing, building, and testing Node.js applications
-by Evan M, <https://www.manning.com/books/express-in-action>
+- [Express in Action: Writing, building, and testing Node.js applications by Evan M](https://www.manning.com/books/express-in-action)
+
+- [How To Start Sending Email](https://documentation.mailgun.com/en/latest/quickstart-sending.html)
+
+- [How To View Your Messages With Mailgun](https://www.mailgun.com/blog/how-to-view-your-messages)

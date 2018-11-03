@@ -4,14 +4,12 @@ const logger = require("morgan")
 const bodyParser = require("body-parser") // simplifies access to request body
 const app = express()  // make express app
 const port = process.env.PORT || 8081  // try heroku port first
-const auth = (process.env.NODE_ENV === 'production') ? {
-  "auth": { "api_key": process.env.MAILGUN_API_KEY, "domain": process.env.MAILGUN_DOMAIN }
-} : require('./config.json')
 
-// Needed for automatic mailing
-const fs = require('fs')
-const nodemailer = require('nodemailer');
-const mg = require('nodemailer-mailgun-transport');
+// MailGun
+const mgconfig = require('./config.json')
+const api_key = process.env.MAILGUN_API_KEY || mgconfig.MAILGUN_API_KEY;
+const DOMAIN = process.env.MAILGUN_DOMAIN || mgconfig.MAILGUN_DOMAIN;
+const mailgun = require('mailgun-js')({apiKey: api_key, domain: DOMAIN});
 
 // ADD THESE COMMENTS AND IMPLEMENTATION HERE 
 // 1 set up the view engine
@@ -68,28 +66,24 @@ app.post("/contact", function (req, res) {
   // logs to the terminal window (not the browser)
   console.log('\nCONTACT FORM DATA: ' + name + ' ' + email + ' ' + company + ' ' + comment + '\n');
 
-  // create transporter object capable of sending email using the default SMTP transport
-  const transporter = nodemailer.createTransport(mg(auth));
-
   const mailOptions = {
     from: '"Denise Case" <denisecase@gmail.com>', // sender address
     to: 'dcase@nwmissouri.edu, denisecase@gmail.com', // list of receivers
-    subject: 'Message from Website Contact page', // Subject line
+    subject: 'Message from Resume Website Contact page', // Subject line
     text: comment,
     err: isError
   }
 
-  transporter.sendMail(mailOptions, function (error, info) {
+  // send message via MailGun's API
+  mailgun.messages().send(mailOptions, function (error, body) {
     if (error) {
       console.log('\nERROR: ' + error + '\n');
       res.json({ msg: 'error sending message' })
     } else {
       console.log('Sending email...')
-      if (info) { console.log('\nres SENT: ' + info.res + '\n') }
-      res.render('contact-confirm.ejs')
-    }
+    console.log(body);
+    res.render('contact-confirm.ejs')
   })
-})
 
 // 6 this will execute for all unknown URIs not specifically handled
 app.get(function (req, res) {
