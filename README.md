@@ -60,12 +60,12 @@ I used a template generator to get started with HTML5 boilerplate
 
   ```Powershell
   > npm install
-  > nodemon
+  > nodemon app.js
   ```
 
 Open browser `http://localhost:8081`.
 
-## Set up Mailgun
+## Set up free email notifications with Mailgun
 
 1. Sign up for an account at <https://www.mailgun.com>.
 1. Log in.
@@ -87,6 +87,33 @@ To improve performance and accessibility on mobile devices, it's progressive.
 
 - manifest.json to provide information about the app and how it should appear
 - service-worker.js for fetching and caching (they run even when the user is offline)
+
+## Set up Free Hosting with Heroku
+
+1. Create a free account with Heroku hosting service.
+2. Create an appname for your site.
+3. Go to Deploy and install Heroku CLI (command line interface).
+4. Go to Settings to see your Heroku URI (hosted website link).
+
+## Making Changes
+
+1. Git Add & commit your changes to your local repository (on your machine).
+2. Git push to origin master branch - your source code repository (e.g. on GitHub or BitBucket).
+
+## Deploy with Heroku CLI
+
+1. Open command window as administrator in your local repo folder on your machine. 
+2. Run heroku login and enter your email address and heroku password.
+3. Run git push heroku master
+4. If errors, use heroku logs to view the log files. 
+
+```Powershell
+heroku login
+git push heroku master
+heroku logs
+```
+
+Open a browser to your Heroku URL to view.
 
 ## References
 
